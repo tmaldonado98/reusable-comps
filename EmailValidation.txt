@@ -1,0 +1,35 @@
+///Regex validation for email input
+///email form
+const [value, setValue] = useState('');
+const [valid, setValid] = useState(null);
+const [invalid, setInvalid] = useState(null);
+
+//email regex
+const emailRegex = /^([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+
+const handleEmail = (event) => {
+  const inputValue = event.target.value;
+  const inputType = event.target.type;
+
+  // Check if the input value matches the input type
+//   const isValidInput = inputValue.match(new RegExp(inputType, 'i'));
+    if (emailRegex.test(inputValue)) {
+        setValid(true);
+        setInvalid(false);
+    } else {
+        setInvalid(true);
+        setValid(false);
+    }
+
+  setValue(inputValue);
+};
+
+// ReactStrap Input
+<Input
+bsSize="lg"
+type="email"
+value={value}
+onChange={handleEmail}
+valid={valid}
+invalid={invalid}
+/>
